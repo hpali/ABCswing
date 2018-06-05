@@ -300,6 +300,10 @@ public class MainWindow extends RootWindow {
         memuItemList.add(itemSaveToXmlJDOM);
         memuItemList.add(xmlToDbMenuItem);
         memuItemList.add(menuDB);
+        memuItemList.add(menuHibernate);
+        memuItemList.add(miHibRevEng);
+        memuItemList.add(miXmlToDBHibernate);
+        
          
         
     }
@@ -475,6 +479,9 @@ public class MainWindow extends RootWindow {
         itemSaveToXmlJDOM.setText(getLanguageProp().getString("itemSaveToXmlJDOM"));
         menuDB.setText(getLanguageProp().getString("menuDB"));
         xmlToDbMenuItem.setText(getLanguageProp().getString("xmlToDbMenuItem"));
+        menuHibernate.setText(getLanguageProp().getString("menuHibernate"));
+        miHibRevEng.setText(getLanguageProp().getString("miHibRevEng"));
+        miXmlToDBHibernate.setText(getLanguageProp().getString("miXmlToDBHibernate"));
 
         if (newuser != null) {
             newuser.refresh();

@@ -141,7 +141,7 @@ public class XmlToDBHibernatePanel extends RootWindow {
             session.beginTransaction();
 
             System.out.println("MÁSODIK");
-            for (pojos.Exercise exercise : exercises) {
+            for (Exercise exercise : exercises) {
                 try {
                     session.save(exercise);
                 } catch (NonUniqueObjectException nuoe) {
