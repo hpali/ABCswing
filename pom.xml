@@ -11,19 +11,19 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>                      
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/java/properties</directory>
-            </resource>
-        </resources>
-    </build>
+    <!--<build>-->
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>src/main/java</directory>-->
+                <!--<includes>                      -->
+                    <!--<include>**/*.xml</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
+            <!--<resource>-->
+                <!--<directory>src/main/resources/properties</directory>-->
+            <!--</resource>-->
+        <!--</resources>-->
+    <!--</build>-->
     
     
     <dependencies>
