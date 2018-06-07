@@ -178,30 +178,6 @@ public class XmlToDBHibernatePanel extends RootWindow {
                 sessionObj.close();
             }
         }
-     /*   Session session = null;
-        try {
-            session = util.HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-
-            System.out.println("MÁSODIK");
-            for (object.Exercise exercise : exercises) {
-                try {
-                    session.save(exercise);
-                } catch (NonUniqueObjectException nuoe) {
-                    System.out.println("HIBA VAN A KRÉTA KÖRÜL: " + exercise.toString());
-                }
-            }
-            System.out.println("HARMADIK");
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("GÁZ VAN: " + e.toString());
-        } finally {
-            session.clear();
-            session.disconnect();
-            session.close();
-            //TODO  hibernate.HibernateUtil.getSessionFactory().close();
-
-        }*/
     }//GEN-LAST:event_butXmltoDBOKHibActionPerformed
 
     private void buSavaXmlCancelToDBHibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buSavaXmlCancelToDBHibActionPerformed
