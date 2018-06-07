@@ -11,19 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import org.hibernate.NonUniqueObjectException;
-import org.hibernate.Session;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import pojos.Exercise;
-import pojos.ExercisesListHib;
 import main.MainWindow;
 import common.RootWindow;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import object.Exercise;
+import object.ExercisesList;
+import org.hibernate.NonUniqueObjectException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
 import util.Utility;
 
 /**
@@ -34,6 +39,8 @@ public class XmlToDBHibernatePanel extends RootWindow {
 
     MainWindow mainFrame;
     private File xmlFile = null;
+    static Session sessionObj;
+    static SessionFactory sessionFactoryObj;
 
     private String placeOfXml;
     ArrayList<Exercise> exercises = new ArrayList<>();
@@ -133,15 +140,51 @@ public class XmlToDBHibernatePanel extends RootWindow {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private static SessionFactory buildSessionFactory() {
+        // Creating Configuration Instance & Passing Hibernate Configuration File
+        Configuration configObj = new Configuration();
+        configObj.configure("hibernate.cfg.xml");
+        configObj.addAnnotatedClass(object.Exercise.class); 
+
+        // Since Hibernate Version 4.x, ServiceRegistry Is Being Used
+        ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build();
+
+        // Creating Hibernate SessionFactory Instance
+        sessionFactoryObj = configObj.buildSessionFactory(serviceRegistryObj);
+        return sessionFactoryObj;
+    }
+
+
     private void butXmltoDBOKHibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butXmltoDBOKHibActionPerformed
 
-        Session session = null;
+          try {
+            sessionObj = buildSessionFactory().openSession();
+            sessionObj.beginTransaction();
+
+            for (Exercise exercise : exercises) {
+                sessionObj.save(exercise);
+            }
+            System.out.println("\n.......Records Saved Successfully To The Database.......\n");
+            // Committing The Transactions To The Database
+            sessionObj.getTransaction().commit();
+        } catch (Exception sqlException) {
+            if (null != sessionObj.getTransaction()) {
+                System.out.println("\n.......Transaction Is Being Rolled Back.......");
+                sessionObj.getTransaction().rollback();
+            }
+            sqlException.printStackTrace();
+        } finally {
+            if (sessionObj != null) {
+                sessionObj.close();
+            }
+        }
+     /*   Session session = null;
         try {
-        //TODO    session = hibernate.HibernateUtil.getSessionFactory().openSession();
+            session = util.HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
             System.out.println("MÁSODIK");
-            for (Exercise exercise : exercises) {
+            for (object.Exercise exercise : exercises) {
                 try {
                     session.save(exercise);
                 } catch (NonUniqueObjectException nuoe) {
@@ -158,8 +201,7 @@ public class XmlToDBHibernatePanel extends RootWindow {
             session.close();
             //TODO  hibernate.HibernateUtil.getSessionFactory().close();
 
-        }
-
+        }*/
     }//GEN-LAST:event_butXmltoDBOKHibActionPerformed
 
     private void buSavaXmlCancelToDBHibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buSavaXmlCancelToDBHibActionPerformed
@@ -167,13 +209,12 @@ public class XmlToDBHibernatePanel extends RootWindow {
     }//GEN-LAST:event_buSavaXmlCancelToDBHibActionPerformed
 
     private void butSelFilesToDBHibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSelFilesToDBHibActionPerformed
-        ExercisesListHib exercisesList = null;
         File selectedFile = Utility.getSelectedFile(placeOfXml);
-
+        ExercisesList exercisesList = null;
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ExercisesListHib.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(ExercisesList.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            exercisesList = (ExercisesListHib) jaxbUnmarshaller.unmarshal(selectedFile);
+            exercisesList = (ExercisesList) jaxbUnmarshaller.unmarshal(selectedFile);
         } catch (JAXBException ex) {
             Logger.getLogger(XmlToDBPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,7 +223,6 @@ public class XmlToDBHibernatePanel extends RootWindow {
             System.out.println(exercise);
             exercises.add(exercise);
         }
-        System.out.println("megvannak a feladatok");
     }//GEN-LAST:event_butSelFilesToDBHibActionPerformed
 
     public List<Exercise> doListFromXml() {
@@ -201,7 +241,7 @@ public class XmlToDBHibernatePanel extends RootWindow {
                 int number = Integer.parseInt(exercise.getChildText("NUMBER"));
                 String answer = exercise.getChildText("ANSWER");
                 String url = exercise.getChildText("URL");
-                Exercise newExercise = new Exercise(age, language, number, year, answer, url);
+                Exercise newExercise = new Exercise(age, year, language, number, answer, url);
                 exerciselist.add(newExercise);
             }
 

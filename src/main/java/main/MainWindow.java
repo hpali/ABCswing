@@ -5,8 +5,6 @@ package main;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import common.RootWindow;
 import util.Utility;
 import dao.DBManager;
@@ -72,6 +70,7 @@ public class MainWindow extends RootWindow {
         addMenuitemToMap();
         addFunctionsToDB();
         doMenuItemsDisabled();
+        test();
         refresh();
     }
 
@@ -269,16 +268,22 @@ public class MainWindow extends RootWindow {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 453, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void test() {
+        menuHibernate.setEnabled(true);
+        miHibRevEng.setEnabled(true);
+        miXmlToDBHibernate.setEnabled(true);
+    }
 
     public void addToMenuItemList() {
         memuItemList.add(newuserItem);
@@ -303,9 +308,7 @@ public class MainWindow extends RootWindow {
         memuItemList.add(menuHibernate);
         memuItemList.add(miHibRevEng);
         memuItemList.add(miXmlToDBHibernate);
-        
-         
-        
+
     }
 
     public void addMenuitemToMap() {

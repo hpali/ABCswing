@@ -5,19 +5,24 @@
  */
 package object;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
  *
  * @author Admin
  */
+@Entity
 @XmlRootElement
 @XmlType(propOrder = {"age", "year", "language", "number", "answer", "url"})
-public class Exercise {
+public class Exercise implements Serializable {
 
     private String age;
     private int year;
@@ -25,7 +30,7 @@ public class Exercise {
     private int number;
     private String answer;
     private String url;
-    private int id;
+    
 
     public Exercise() {
     }
@@ -49,6 +54,9 @@ public class Exercise {
         this.url = url;
     }
 
+    @Id
+    private int id;
+    
     public int getId() {
         return id;
     }
