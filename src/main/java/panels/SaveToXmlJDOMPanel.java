@@ -68,6 +68,7 @@ public class SaveToXmlJDOMPanel extends RootWindow {
         labSelFiles = new java.awt.Label();
         txtSelFiles = new javax.swing.JTextField();
         butSelToDb = new javax.swing.JButton();
+        buSelFileJdom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +79,7 @@ public class SaveToXmlJDOMPanel extends RootWindow {
             }
         });
 
-        butSelFiles.setLabel(".....");
+        butSelFiles.setLabel("Select Exercises");
         butSelFiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 butSelFilesActionPerformed(evt);
@@ -94,38 +95,51 @@ public class SaveToXmlJDOMPanel extends RootWindow {
             }
         });
 
+        buSelFileJdom.setText("...");
+        buSelFileJdom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buSelFileJdomActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buSavaXmlCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(butSelToDb, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
-                        .addComponent(txtSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(butSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(butSelFiles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSelFiles, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(buSelFileJdom)
+                        .addContainerGap(71, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buSavaXmlCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(butSelToDb)
+                        .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(butSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buSelFileJdom)))
+                .addGap(23, 23, 23)
+                .addComponent(butSelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butSelToDb)
                     .addComponent(buSavaXmlCancel))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,9 +150,7 @@ public class SaveToXmlJDOMPanel extends RootWindow {
     }//GEN-LAST:event_buSavaXmlCancelActionPerformed
 
     private void butSelFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSelFilesActionPerformed
-        
-       File[] selectedFiles  = Utility.getSelectedFileList(defaultPathToKanguru);
-
+        File[] selectedFiles = Utility.getSelectedFileList(defaultPathToKanguru);
         for (File file : selectedFiles) {
             if (file.isDirectory()) {
                 findPicInDirRek(file);
@@ -148,12 +160,10 @@ public class SaveToXmlJDOMPanel extends RootWindow {
                 }
             }
         }
-        System.out.println("álljunk megy egy szóra");
     }//GEN-LAST:event_butSelFilesActionPerformed
 
     private void butSelToDbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSelToDbActionPerformed
 
-        File file = new File("T:\\file.xml");
         Element exercises = new Element("exercises");
         Document doc = new Document(exercises);
         for (String fileabspath : filelist) {
@@ -177,12 +187,18 @@ public class SaveToXmlJDOMPanel extends RootWindow {
         // display nice nice
         xmlOutput.setFormat(Format.getPrettyFormat());
         try {
-            xmlOutput.output(doc, new FileWriter(placeOfXml));
+            xmlOutput.output(doc, new FileWriter(XmlFile));
         } catch (IOException ex) {
             Logger.getLogger(SaveToXmlJDOMPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_butSelToDbActionPerformed
+
+    private void buSelFileJdomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buSelFileJdomActionPerformed
+        XmlFile = Utility.setExercisesPath();
+        txtSelFiles.setText(XmlFile.getName());
+        txtSelFiles.updateUI();
+    }//GEN-LAST:event_buSelFileJdomActionPerformed
 
     public void doXmlFile() {
         Element exercises = new Element("exercises");
@@ -208,7 +224,7 @@ public class SaveToXmlJDOMPanel extends RootWindow {
         // display nice nice
         xmlOutput.setFormat(Format.getPrettyFormat());
         try {
-            xmlOutput.output(doc, new FileWriter(placeOfXml));
+            xmlOutput.output(doc, new FileWriter(XmlFile));
         } catch (IOException ex) {
             Logger.getLogger(SaveToXmlJDOMPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -294,6 +310,7 @@ public class SaveToXmlJDOMPanel extends RootWindow {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buSavaXmlCancel;
+    private javax.swing.JButton buSelFileJdom;
     private java.awt.Button butSelFiles;
     private javax.swing.JButton butSelToDb;
     private java.awt.Label labSelFiles;

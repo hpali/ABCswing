@@ -69,7 +69,7 @@ public class MainWindow extends RootWindow {
         addToMenuItemList();
         addMenuitemToMap();
         addFunctionsToDB();
-        doMenuItemsDisabled();
+     //   doMenuItemsDisabled();
         test();
         refresh();
     }

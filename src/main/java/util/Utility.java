@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -72,7 +73,7 @@ public class Utility {
     public static Properties getPropertiesForMaven(String fileName) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         Properties prop = new Properties();
-        
+
         try (InputStream resourceStream = loader.getResourceAsStream(fileName)) {
             prop.load(resourceStream);
         } catch (IOException ex) {
@@ -108,6 +109,23 @@ public class Utility {
             System.out.println("Nem lett kiválasztva file");
         }
         return selectedFiles;
+    }
+
+    public static File setExercisesPath() {
+        String name = "myfile.xml";
+        String defaultPath = FileSystemView.getFileSystemView().getHomeDirectory().getAbsoluteFile() + File.separator + name;
+        File defaultFile = new File(defaultPath);
+        try {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setSelectedFile(defaultFile);
+            chooser.showOpenDialog(null);
+            defaultFile = chooser.getSelectedFile();
+            defaultFile.createNewFile();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return defaultFile;
     }
 
 }
