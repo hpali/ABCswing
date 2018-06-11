@@ -1,12 +1,11 @@
-package main;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package main;
+
 import common.RootWindow;
-import util.Utility;
 import dao.DBManager;
 import dao.DbConfig;
 import dao.FunctionDAO;
@@ -17,6 +16,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javax.swing.JMenuItem;
+import object.Function;
+import object.User;
 import panels.FunctionListPanel;
 import panels.FunctionManagerPanel;
 import panels.LoginWindowPanel;
@@ -29,8 +30,7 @@ import panels.UserManagerPanel;
 import panels.UsersPanel;
 import panels.XmlToDBHibernatePanel;
 import panels.XmlToDBPanel;
-import object.Function;
-import object.User;
+import util.Utility;
 
 /**
  *
@@ -47,7 +47,7 @@ public class MainWindow extends RootWindow {
     private User activeUser;
     private Locale mainLocale;
     private FunctionDAO functionDAO;
-    private Map<JMenuItem, String> allMenuItems = new HashMap<JMenuItem, String>();
+    private Map<JMenuItem, String> allMenuItems = new HashMap<>();
     private ArrayList<JMenuItem> memuItemList = new ArrayList<JMenuItem>();
 
     public MainWindow() {
@@ -69,8 +69,7 @@ public class MainWindow extends RootWindow {
         addToMenuItemList();
         addMenuitemToMap();
         addFunctionsToDB();
-     //   doMenuItemsDisabled();
-        test();
+        doMenuItemsDisabled();
         refresh();
     }
 
@@ -78,50 +77,47 @@ public class MainWindow extends RootWindow {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         rootMenu = new javax.swing.JMenu();
-        menuItemLogout = new javax.swing.JMenuItem();
-        menuItemLogin = new javax.swing.JMenuItem();
+        menuItemLogout = new javax.swing.JCheckBoxMenuItem();
+        menuItemLogin = new javax.swing.JCheckBoxMenuItem();
         menuUsers = new javax.swing.JMenu();
-        userlistItem = new javax.swing.JMenuItem();
-        newuserItem = new javax.swing.JMenuItem();
-        usermanagerItem = new javax.swing.JMenuItem();
+        userlistItem = new javax.swing.JCheckBoxMenuItem();
+        newuserItem = new javax.swing.JCheckBoxMenuItem();
+        usermanagerItem = new javax.swing.JCheckBoxMenuItem();
         roleMenu = new javax.swing.JMenu();
-        rolelistItem = new javax.swing.JMenuItem();
-        newroleItem = new javax.swing.JMenuItem();
-        rolemanagerItem = new javax.swing.JMenuItem();
+        rolelistItem = new javax.swing.JCheckBoxMenuItem();
+        newroleItem = new javax.swing.JCheckBoxMenuItem();
+        rolemanagerItem = new javax.swing.JCheckBoxMenuItem();
         menuXmlJson = new javax.swing.JMenu();
-        itemSaveToXml = new javax.swing.JMenuItem();
-        itemSaveToXmlJDOM = new javax.swing.JRadioButtonMenuItem();
+        itemSaveToXml = new javax.swing.JCheckBoxMenuItem();
+        itemSaveToXmlJDOM = new javax.swing.JCheckBoxMenuItem();
         functionMenu = new javax.swing.JMenu();
-        functionlistItem = new javax.swing.JMenuItem();
-        newfunctionItem = new javax.swing.JMenuItem();
-        functionmanagerItem = new javax.swing.JMenuItem();
+        newfunctionItem = new javax.swing.JCheckBoxMenuItem();
+        functionlistItem = new javax.swing.JCheckBoxMenuItem();
+        functionmanagerItem = new javax.swing.JCheckBoxMenuItem();
         menuDB = new javax.swing.JMenu();
-        xmlToDbMenuItem = new javax.swing.JMenuItem();
+        xmlToDbMenuItem = new javax.swing.JCheckBoxMenuItem();
         menuHibernate = new javax.swing.JMenu();
-        miHibRevEng = new javax.swing.JMenuItem();
-        miXmlToDBHibernate = new javax.swing.JMenuItem();
+        miHibRevEng = new javax.swing.JCheckBoxMenuItem();
+        miXmlToDBHibernate = new javax.swing.JCheckBoxMenuItem();
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenu6.setText("jMenu6");
 
-        jMenuItem2.setText("jMenuItem2");
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
-        jMenu1.setText("File");
-        jMenuBar2.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar2.add(jMenu2);
+        jCheckBoxMenuItem3.setSelected(true);
+        jCheckBoxMenuItem3.setText("jCheckBoxMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         rootMenu.setText("Root");
 
+        menuItemLogout.setSelected(true);
         menuItemLogout.setText("Logout");
         menuItemLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +126,7 @@ public class MainWindow extends RootWindow {
         });
         rootMenu.add(menuItemLogout);
 
+        menuItemLogin.setSelected(true);
         menuItemLogin.setText("Login");
         menuItemLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +139,7 @@ public class MainWindow extends RootWindow {
 
         menuUsers.setText("Users");
 
+        userlistItem.setSelected(true);
         userlistItem.setText("User list");
         userlistItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +148,8 @@ public class MainWindow extends RootWindow {
         });
         menuUsers.add(userlistItem);
 
-        newuserItem.setText("New user");
+        newuserItem.setSelected(true);
+        newuserItem.setText("New User");
         newuserItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newuserItemActionPerformed(evt);
@@ -158,7 +157,8 @@ public class MainWindow extends RootWindow {
         });
         menuUsers.add(newuserItem);
 
-        usermanagerItem.setText("User manager");
+        usermanagerItem.setSelected(true);
+        usermanagerItem.setText("User Manager");
         usermanagerItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usermanagerItemActionPerformed(evt);
@@ -170,24 +170,23 @@ public class MainWindow extends RootWindow {
 
         roleMenu.setText("Roles");
 
+        rolelistItem.setSelected(true);
         rolelistItem.setText("Role list");
         roleMenu.add(rolelistItem);
 
+        newroleItem.setSelected(true);
         newroleItem.setText("New role");
-        newroleItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newroleItemActionPerformed(evt);
-            }
-        });
         roleMenu.add(newroleItem);
 
-        rolemanagerItem.setText("Role manager");
+        rolemanagerItem.setSelected(true);
+        rolemanagerItem.setText("Role Manager");
         roleMenu.add(rolemanagerItem);
 
         jMenuBar1.add(roleMenu);
 
         menuXmlJson.setText("Xml/Json");
 
+        itemSaveToXml.setSelected(true);
         itemSaveToXml.setText("Generate file JAXB");
         itemSaveToXml.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,16 +208,8 @@ public class MainWindow extends RootWindow {
 
         functionMenu.setText("Function");
 
-        functionlistItem.setText("Function list");
-        functionlistItem.setActionCommand("Function List");
-        functionlistItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                functionlistItemActionPerformed(evt);
-            }
-        });
-        functionMenu.add(functionlistItem);
-
-        newfunctionItem.setText("New function");
+        newfunctionItem.setSelected(true);
+        newfunctionItem.setText("New Function");
         newfunctionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newfunctionItemActionPerformed(evt);
@@ -226,7 +217,17 @@ public class MainWindow extends RootWindow {
         });
         functionMenu.add(newfunctionItem);
 
-        functionmanagerItem.setText("Function manager");
+        functionlistItem.setSelected(true);
+        functionlistItem.setText("Function list");
+        functionlistItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                functionlistItemActionPerformed(evt);
+            }
+        });
+        functionMenu.add(functionlistItem);
+
+        functionmanagerItem.setSelected(true);
+        functionmanagerItem.setText("Function Manager");
         functionmanagerItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 functionmanagerItemActionPerformed(evt);
@@ -238,7 +239,8 @@ public class MainWindow extends RootWindow {
 
         menuDB.setText("DatenBank");
 
-        xmlToDbMenuItem.setText("XML to DB");
+        xmlToDbMenuItem.setSelected(true);
+        xmlToDbMenuItem.setText("Xml to DB");
         xmlToDbMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 xmlToDbMenuItemActionPerformed(evt);
@@ -248,11 +250,18 @@ public class MainWindow extends RootWindow {
 
         jMenuBar1.add(menuDB);
 
-        menuHibernate.setText("Hibernate");
+        menuHibernate.setText("Hibernata");
 
+        miHibRevEng.setSelected(true);
         miHibRevEng.setText("Reverse Engineering Wizard");
+        miHibRevEng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miHibRevEngActionPerformed(evt);
+            }
+        });
         menuHibernate.add(miHibRevEng);
 
+        miXmlToDBHibernate.setSelected(true);
         miXmlToDBHibernate.setText("Save Xml to db");
         miXmlToDBHibernate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,22 +277,81 @@ public class MainWindow extends RootWindow {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 453, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 481, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 274, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void test() {
-        menuHibernate.setEnabled(true);
-        miHibRevEng.setEnabled(true);
-        miXmlToDBHibernate.setEnabled(true);
+    private void menuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLogoutActionPerformed
+        if (activeUser != null) {
+            setActiveUser(null);
+            systemConfig = Utility.getProperties("config.properties");
+            dbConfig = null;
+            dbManager = null;
+            afterInitComponents();
+        }
+    }//GEN-LAST:event_menuItemLogoutActionPerformed
+
+    public void addFunctionsToDB() {
+
+        for (JMenuItem menuItem : memuItemList) {
+            functionDAO.doFunctionInsert(new Function(menuItem.getText()));
+        }
     }
+
+    private void menuItemLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLoginActionPerformed
+        selectorWindow = new LoginWindowPanel(this);
+    }//GEN-LAST:event_menuItemLoginActionPerformed
+
+    private void userlistItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userlistItemActionPerformed
+        selectorWindow = new UsersPanel(this);
+    }//GEN-LAST:event_userlistItemActionPerformed
+
+    private void newuserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newuserItemActionPerformed
+        selectorWindow = new NewUserPanel(this);
+    }//GEN-LAST:event_newuserItemActionPerformed
+
+    private void usermanagerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usermanagerItemActionPerformed
+        selectorWindow = new UserManagerPanel(this);
+    }//GEN-LAST:event_usermanagerItemActionPerformed
+
+    private void itemSaveToXmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSaveToXmlActionPerformed
+        selectorWindow = new SaveToXmlPanel(this);
+    }//GEN-LAST:event_itemSaveToXmlActionPerformed
+
+    private void itemSaveToXmlJDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSaveToXmlJDOMActionPerformed
+       selectorWindow = new SaveToXmlJDOMPanel(this);
+    }//GEN-LAST:event_itemSaveToXmlJDOMActionPerformed
+
+    private void newfunctionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newfunctionItemActionPerformed
+        selectorWindow = new NewFunctionPanel(this);
+    }//GEN-LAST:event_newfunctionItemActionPerformed
+
+    private void functionlistItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionlistItemActionPerformed
+        selectorWindow = new FunctionListPanel(this);
+    }//GEN-LAST:event_functionlistItemActionPerformed
+
+    private void functionmanagerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionmanagerItemActionPerformed
+         selectorWindow = new FunctionManagerPanel(this);
+    }//GEN-LAST:event_functionmanagerItemActionPerformed
+
+    private void xmlToDbMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlToDbMenuItemActionPerformed
+        selectorWindow = new XmlToDBPanel(this);
+    }//GEN-LAST:event_xmlToDbMenuItemActionPerformed
+
+    private void miHibRevEngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miHibRevEngActionPerformed
+       selectorWindow = new XmlToDBHibernatePanel(this);
+    }//GEN-LAST:event_miHibRevEngActionPerformed
+
+    private void miXmlToDBHibernateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miXmlToDBHibernateActionPerformed
+        selectorWindow = new XmlToDBHibernatePanel(this);
+    }//GEN-LAST:event_miXmlToDBHibernateActionPerformed
 
     public void addToMenuItemList() {
         memuItemList.add(newuserItem);
@@ -291,7 +359,7 @@ public class MainWindow extends RootWindow {
         memuItemList.add(newfunctionItem);
         memuItemList.add(usermanagerItem);
         memuItemList.add(functionmanagerItem);
-        memuItemList.add(itemSaveToXml);
+        memuItemList.add(itemSaveToXmlJDOM);
         memuItemList.add(menuItemLogout);
         memuItemList.add(newroleItem);
         memuItemList.add(rolemanagerItem);
@@ -305,9 +373,6 @@ public class MainWindow extends RootWindow {
         memuItemList.add(itemSaveToXmlJDOM);
         memuItemList.add(xmlToDbMenuItem);
         memuItemList.add(menuDB);
-        memuItemList.add(menuHibernate);
-        memuItemList.add(miHibRevEng);
-        memuItemList.add(miXmlToDBHibernate);
 
     }
 
@@ -327,71 +392,8 @@ public class MainWindow extends RootWindow {
         }
     }
 
-    private void newuserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newuserItemActionPerformed
-        selectorWindow = new NewUserPanel(this);
-    }//GEN-LAST:event_newuserItemActionPerformed
-
-    private void menuItemLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLoginActionPerformed
-        selectorWindow = new LoginWindowPanel(this);
-    }//GEN-LAST:event_menuItemLoginActionPerformed
-
-    private void newroleItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newroleItemActionPerformed
-        selectorWindow = new NewRolePanel(this);
-    }//GEN-LAST:event_newroleItemActionPerformed
-
-    private void newfunctionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newfunctionItemActionPerformed
-        selectorWindow = new NewFunctionPanel(this);
-    }//GEN-LAST:event_newfunctionItemActionPerformed
-
-    private void userlistItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userlistItemActionPerformed
-        selectorWindow = new UsersPanel(this);
-    }//GEN-LAST:event_userlistItemActionPerformed
-
-    private void usermanagerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usermanagerItemActionPerformed
-        selectorWindow = new UserManagerPanel(this);
-    }//GEN-LAST:event_usermanagerItemActionPerformed
-
-    private void menuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLogoutActionPerformed
-        if (activeUser != null) {
-            setActiveUser(null);
-            systemConfig = Utility.getProperties("config.properties");
-            dbConfig = null;
-            dbManager = null;
-            afterInitComponents();
-        }
-    }//GEN-LAST:event_menuItemLogoutActionPerformed
-
-    public void addFunctionsToDB() {
-
-        for (JMenuItem menuItem : memuItemList) {
-            functionDAO.doFunctionInsert(new Function(menuItem.getText()));
-        }
-    }
-
-    private void functionmanagerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionmanagerItemActionPerformed
-        selectorWindow = new FunctionManagerPanel(this);
-    }//GEN-LAST:event_functionmanagerItemActionPerformed
-
-    private void functionlistItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionlistItemActionPerformed
-        selectorWindow = new FunctionListPanel(this);
-    }//GEN-LAST:event_functionlistItemActionPerformed
-
-    private void itemSaveToXmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSaveToXmlActionPerformed
-        selectorWindow = new SaveToXmlPanel(this);
-    }//GEN-LAST:event_itemSaveToXmlActionPerformed
-
-    private void itemSaveToXmlJDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSaveToXmlJDOMActionPerformed
-        selectorWindow = new SaveToXmlJDOMPanel(this);
-    }//GEN-LAST:event_itemSaveToXmlJDOMActionPerformed
-
-    private void xmlToDbMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlToDbMenuItemActionPerformed
-        selectorWindow = new XmlToDBPanel(this);
-    }//GEN-LAST:event_xmlToDbMenuItemActionPerformed
-
-    private void miXmlToDBHibernateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miXmlToDBHibernateActionPerformed
-        selectorWindow = new XmlToDBHibernatePanel(this);
-    }//GEN-LAST:event_miXmlToDBHibernateActionPerformed
-
+                                          
+    
     /**
      * @param args the command line arguments
      */
@@ -428,38 +430,6 @@ public class MainWindow extends RootWindow {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu functionMenu;
-    private javax.swing.JMenuItem functionlistItem;
-    private javax.swing.JMenuItem functionmanagerItem;
-    private javax.swing.JMenuItem itemSaveToXml;
-    private javax.swing.JRadioButtonMenuItem itemSaveToXmlJDOM;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenu menuDB;
-    private javax.swing.JMenu menuHibernate;
-    private javax.swing.JMenuItem menuItemLogin;
-    private javax.swing.JMenuItem menuItemLogout;
-    private javax.swing.JMenu menuUsers;
-    private javax.swing.JMenu menuXmlJson;
-    private javax.swing.JMenuItem miHibRevEng;
-    private javax.swing.JMenuItem miXmlToDBHibernate;
-    private javax.swing.JMenuItem newfunctionItem;
-    private javax.swing.JMenuItem newroleItem;
-    private javax.swing.JMenuItem newuserItem;
-    private javax.swing.JMenu roleMenu;
-    private javax.swing.JMenuItem rolelistItem;
-    private javax.swing.JMenuItem rolemanagerItem;
-    private javax.swing.JMenu rootMenu;
-    private javax.swing.JMenuItem userlistItem;
-    private javax.swing.JMenuItem usermanagerItem;
-    private javax.swing.JMenuItem xmlToDbMenuItem;
-    // End of variables declaration//GEN-END:variables
-
     @Override
     public void refresh() {
         loadLanguage(mainLocale);
@@ -470,7 +440,7 @@ public class MainWindow extends RootWindow {
         usermanagerItem.setText(getLanguageProp().getString("usermanagerItem"));
         functionmanagerItem.setText(getLanguageProp().getString("functionmanagerItem"));
         functionlistItem.setText(getLanguageProp().getString("functionlistItem"));
-        itemSaveToXml.setText(getLanguageProp().getString("itemSaveToXml"));
+        itemSaveToXmlJDOM.setText(getLanguageProp().getString("itemSaveToXml"));
         functionMenu.setText(getLanguageProp().getString("functionMenu"));
         menuItemLogout.setText(getLanguageProp().getString("menuItemLogout"));
         roleMenu.setText(getLanguageProp().getString("roleMenu"));
@@ -482,9 +452,6 @@ public class MainWindow extends RootWindow {
         itemSaveToXmlJDOM.setText(getLanguageProp().getString("itemSaveToXmlJDOM"));
         menuDB.setText(getLanguageProp().getString("menuDB"));
         xmlToDbMenuItem.setText(getLanguageProp().getString("xmlToDbMenuItem"));
-        menuHibernate.setText(getLanguageProp().getString("menuHibernate"));
-        miHibRevEng.setText(getLanguageProp().getString("miHibRevEng"));
-        miXmlToDBHibernate.setText(getLanguageProp().getString("miXmlToDBHibernate"));
 
         if (newuser != null) {
             newuser.refresh();
@@ -558,5 +525,36 @@ public class MainWindow extends RootWindow {
     public void setMemuItemList(ArrayList<JMenuItem> memuItemList) {
         this.memuItemList = memuItemList;
     }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu functionMenu;
+    private javax.swing.JCheckBoxMenuItem functionlistItem;
+    private javax.swing.JCheckBoxMenuItem functionmanagerItem;
+    private javax.swing.JCheckBoxMenuItem itemSaveToXml;
+    private javax.swing.JCheckBoxMenuItem itemSaveToXmlJDOM;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menuDB;
+    private javax.swing.JMenu menuHibernate;
+    private javax.swing.JCheckBoxMenuItem menuItemLogin;
+    private javax.swing.JCheckBoxMenuItem menuItemLogout;
+    private javax.swing.JMenu menuUsers;
+    private javax.swing.JMenu menuXmlJson;
+    private javax.swing.JCheckBoxMenuItem miHibRevEng;
+    private javax.swing.JCheckBoxMenuItem miXmlToDBHibernate;
+    private javax.swing.JCheckBoxMenuItem newfunctionItem;
+    private javax.swing.JCheckBoxMenuItem newroleItem;
+    private javax.swing.JCheckBoxMenuItem newuserItem;
+    private javax.swing.JMenu roleMenu;
+    private javax.swing.JCheckBoxMenuItem rolelistItem;
+    private javax.swing.JCheckBoxMenuItem rolemanagerItem;
+    private javax.swing.JMenu rootMenu;
+    private javax.swing.JCheckBoxMenuItem userlistItem;
+    private javax.swing.JCheckBoxMenuItem usermanagerItem;
+    private javax.swing.JCheckBoxMenuItem xmlToDbMenuItem;
+    // End of variables declaration//GEN-END:variables
 
 }
