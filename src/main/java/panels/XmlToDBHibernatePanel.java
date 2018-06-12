@@ -199,6 +199,8 @@ public class XmlToDBHibernatePanel extends RootWindow {
             System.out.println(exercise);
             exercises.add(exercise);
         }
+        txtSelFilesToDBHib.setText(selectedFile.getName());
+        txtSelFilesToDBHib.updateUI();
     }//GEN-LAST:event_butSelFilesToDBHibActionPerformed
 
     public List<Exercise> doListFromXml() {

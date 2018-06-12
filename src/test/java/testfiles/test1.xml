@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercises>
+  <exercise>
+    <AGE>Benjamin</AGE>
+    <YEAR>1998</YEAR>
+    <LANGUAGE>DE</LANGUAGE>
+    <NUMBER>10</NUMBER>
+    <ANSWER>B</ANSWER>
+    <URL>http://127.0.0.1\Kanguru\1998\Benjamin_1998_DE\Benjamin_1998_DE_10_B_E.png</URL>
+  </exercise>
+  <exercise>
+    <AGE>Benjamin</AGE>
+    <YEAR>1998</YEAR>
+    <LANGUAGE>DE</LANGUAGE>
+    <NUMBER>11</NUMBER>
+    <ANSWER>B</ANSWER>
+    <URL>http://127.0.0.1\Kanguru\1998\Benjamin_1998_DE\Benjamin_1998_DE_11_B_E.png</URL>
+  </exercise>
+  </exercises>

@@ -37,7 +37,7 @@ import util.Utility;
  * @author Admin
  */
 public class MainWindow extends RootWindow {
-
+    
     private RootWindow selectorWindow;
     private NewUserPanel newuser;
     private ResourceBundle languageProp;
@@ -49,15 +49,15 @@ public class MainWindow extends RootWindow {
     private FunctionDAO functionDAO;
     private Map<JMenuItem, String> allMenuItems = new HashMap<>();
     private ArrayList<JMenuItem> memuItemList = new ArrayList<JMenuItem>();
-
+    
     public MainWindow() {
         initComponents();
         afterInitComponents();
     }
-
+    
     private void afterInitComponents() {
         systemConfig = Utility.getProperties("config.properties");
-
+        
         dbConfig = new DbConfig(
                 systemConfig.getProperty("databaseurl"),
                 systemConfig.getProperty("username"),
@@ -70,9 +70,10 @@ public class MainWindow extends RootWindow {
         addMenuitemToMap();
         addFunctionsToDB();
         doMenuItemsDisabled();
+        test();
         refresh();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -297,9 +298,15 @@ public class MainWindow extends RootWindow {
             afterInitComponents();
         }
     }//GEN-LAST:event_menuItemLogoutActionPerformed
-
+    
+    public void test() {
+        menuHibernate.setEnabled(true);
+        //miHibRevEng;
+        miXmlToDBHibernate.setEnabled(true);
+    }
+    
     public void addFunctionsToDB() {
-
+        
         for (JMenuItem menuItem : memuItemList) {
             functionDAO.doFunctionInsert(new Function(menuItem.getText()));
         }
@@ -326,7 +333,7 @@ public class MainWindow extends RootWindow {
     }//GEN-LAST:event_itemSaveToXmlActionPerformed
 
     private void itemSaveToXmlJDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSaveToXmlJDOMActionPerformed
-       selectorWindow = new SaveToXmlJDOMPanel(this);
+        selectorWindow = new SaveToXmlJDOMPanel(this);
     }//GEN-LAST:event_itemSaveToXmlJDOMActionPerformed
 
     private void newfunctionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newfunctionItemActionPerformed
@@ -338,7 +345,7 @@ public class MainWindow extends RootWindow {
     }//GEN-LAST:event_functionlistItemActionPerformed
 
     private void functionmanagerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_functionmanagerItemActionPerformed
-         selectorWindow = new FunctionManagerPanel(this);
+        selectorWindow = new FunctionManagerPanel(this);
     }//GEN-LAST:event_functionmanagerItemActionPerformed
 
     private void xmlToDbMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlToDbMenuItemActionPerformed
@@ -346,13 +353,13 @@ public class MainWindow extends RootWindow {
     }//GEN-LAST:event_xmlToDbMenuItemActionPerformed
 
     private void miHibRevEngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miHibRevEngActionPerformed
-       selectorWindow = new XmlToDBHibernatePanel(this);
+        selectorWindow = new XmlToDBHibernatePanel(this);
     }//GEN-LAST:event_miHibRevEngActionPerformed
 
     private void miXmlToDBHibernateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miXmlToDBHibernateActionPerformed
         selectorWindow = new XmlToDBHibernatePanel(this);
     }//GEN-LAST:event_miXmlToDBHibernateActionPerformed
-
+    
     public void addToMenuItemList() {
         memuItemList.add(newuserItem);
         memuItemList.add(menuItemLogin);
@@ -373,15 +380,18 @@ public class MainWindow extends RootWindow {
         memuItemList.add(itemSaveToXmlJDOM);
         memuItemList.add(xmlToDbMenuItem);
         memuItemList.add(menuDB);
-
+        memuItemList.add(menuHibernate);
+        memuItemList.add(miHibRevEng);
+        memuItemList.add(miXmlToDBHibernate);
+        
     }
-
+    
     public void addMenuitemToMap() {
         for (JMenuItem jMenuItem : memuItemList) {
             allMenuItems.put(jMenuItem, jMenuItem.getText());
         }
     }
-
+    
     public void doMenuItemsDisabled() {
         for (Map.Entry<JMenuItem, String> menuitem : allMenuItems.entrySet()) {
             if (!menuitem.getValue().contains("Login")) {
@@ -392,8 +402,6 @@ public class MainWindow extends RootWindow {
         }
     }
 
-                                          
-    
     /**
      * @param args the command line arguments
      */
@@ -429,7 +437,7 @@ public class MainWindow extends RootWindow {
             }
         });
     }
-
+    
     @Override
     public void refresh() {
         loadLanguage(mainLocale);
@@ -452,76 +460,79 @@ public class MainWindow extends RootWindow {
         itemSaveToXmlJDOM.setText(getLanguageProp().getString("itemSaveToXmlJDOM"));
         menuDB.setText(getLanguageProp().getString("menuDB"));
         xmlToDbMenuItem.setText(getLanguageProp().getString("xmlToDbMenuItem"));
-
+        menuHibernate.setText(getLanguageProp().getString("menuHibernate"));
+        miHibRevEng.setText(getLanguageProp().getString("miHibRevEng"));
+        miXmlToDBHibernate.setText(getLanguageProp().getString("miXmlToDBHibernate"));
+        
         if (newuser != null) {
             newuser.refresh();
         }
     }
-
+    
     public DbConfig getDbConfig() {
         return dbConfig;
     }
-
+    
     public void setDbConfig(DbConfig dbConfig) {
         this.dbConfig = dbConfig;
     }
-
+    
     public DBManager getDbManager() {
         return dbManager;
     }
-
+    
     public void setDbManager(DBManager dbManager) {
         this.dbManager = dbManager;
     }
-
+    
     public User getActiveUser() {
         return activeUser;
     }
-
+    
     public void setActiveUser(User activeUser) {
         this.activeUser = activeUser;
     }
-
+    
     public void loadLanguage(Locale loc) {
         setLanguageProp(Utility.getBoundle("lang", loc));  // betölti a  meglévő nyelvi fajlokat
     }
-
+    
     public ResourceBundle getLanguageProp() {
         return languageProp;
     }
-
+    
     public void setLanguageProp(ResourceBundle languageProp) {
         this.languageProp = languageProp;
     }
-
+    
     public Properties getSystemConfig() {
         return systemConfig;
     }
-
+    
     public void setSystemConfig(Properties systemConfig) {
         this.systemConfig = systemConfig;
     }
-
+    
     public Locale getMainLocale() {
         return mainLocale;
     }
-
+    
     public void setMainLocale(Locale mainLocale) {
         this.mainLocale = mainLocale;
     }
-
+    
     public Map<JMenuItem, String> getAllMenuItems() {
         return allMenuItems;
     }
-
+    
     public void setAllMenuItems(Map<JMenuItem, String> allMenuItems) {
         this.allMenuItems = allMenuItems;
     }
-
+    
     public ArrayList<JMenuItem> getMemuItemList() {
         return memuItemList;
     }
-
+    
     public void setMemuItemList(ArrayList<JMenuItem> memuItemList) {
         this.memuItemList = memuItemList;
     }
